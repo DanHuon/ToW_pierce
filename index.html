@@ -11,8 +11,18 @@
         <h1>Pierce Calculator</h1>
         <div class="grid-container" id="gridContainer">
             </div>
-        <div class="total-pierce">
-            <h2>Total Pierce: <span id="totalPierceValue">0</span></h2>
+        <div class="total-pierce-container">
+            <div class="total-pierce">
+                <h2>Passive Pierce: <span id="passivePierceValue">0</span></h2>
+            </div>
+            <div class="total-pierce" id="activePierceSection" style="display: none;">
+                <h2>Active Pierce: <span id="activePierceValue">0</span></h2>
+                <p id="activeCardsDisplay" class="active-cards-display"></p>
+            </div>
+            <div class="total-pierce" id="doubleGloveActivePierceSection" style="display: none;">
+                <h2>Double Glove Active Pierce: <span id="doubleGloveActivePierceValue">0</span></h2>
+                <p id="doubleGloveActiveCardsDisplay" class="active-cards-display"></p>
+            </div>
         </div>
     </div>
     <script src="cards.js"></script>
