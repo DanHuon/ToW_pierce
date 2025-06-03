@@ -11,6 +11,7 @@
 
 const allCards = [
     // --- ARMOR CARDS ---
+    { name: "Dezeria A", pierce: 211, assistPierce: 23, type: "armor" },
     { name: "Diva - Celestial", pierce: 180, assistPierce: 19, type: "armor" },
     { name: "Zashiki Warashi", pierce: 151, assistPierce: 15, type: "armor" },
     { name: "Tengu Raccoon", pierce: 143, assistPierce: 15, type: "armor" },
@@ -30,6 +31,7 @@ const allCards = [
     { name: "Chie", pierce: 108, type: "talisman" },
 
     // --- HEADWEAR CARDS ---
+    { name: "Blood Phantom Princess - Camellia", pierce: 204, assistPierce: 25, type: "headwear" },
     { name: "Onikiri", pierce: 200, assistPierce: 21, type: "headwear" },
     { name: "Kinnara", pierce: 180, assistPierce: 19, type: "headwear" },
     { name: "Kubinashi", pierce: 124, assistPierce: 15, type: "headwear" },
