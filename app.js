@@ -1,14 +1,22 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // Calculator Elements
     const gridContainer = document.getElementById('gridContainer');
     const passivePierceValueSpan = document.getElementById('passivePierceValue');
     const activePierceValueSpan = document.getElementById('activePierceValue');
     const activeCardsDisplaySpan = document.getElementById('activeCardsDisplay');
     const doubleGloveActivePierceValueSpan = document.getElementById('doubleGloveActivePierceValue');
     const doubleGloveActiveCardsDisplaySpan = document.getElementById('doubleGloveActiveCardsDisplay');
-
     const activePierceSection = document.getElementById('activePierceSection');
     const doubleGloveActivePierceSection = document.getElementById('doubleGloveActivePierceSection');
 
+    // Tabs Elements
+    const tabButtons = document.querySelectorAll('.tab-button');
+    const tabContents = document.querySelectorAll('.tab-content');
+    const calculatorTabContent = document.getElementById('calculator');
+    const catalogTabContent = document.getElementById('catalog');
+
+    // Catalog Elements
+    const cardsCatalogGrid = document.getElementById('cardsCatalogGrid');
 
     const columnDefinitions = [
         { name: 'Armor 1', type: 'armor', id: 'armor1' },
@@ -24,14 +32,80 @@ document.addEventListener('DOMContentLoaded', () => {
     const regularSlotsPerColumn = 4;
     const assistSlotsPerColumn = 1;
     const totalSlotsPerColumn = regularSlotsPerColumn + assistSlotsPerColumn;
-
     const selectedCardsByColumn = {};
 
     columnDefinitions.forEach(colDef => {
         selectedCardsByColumn[colDef.id] = Array(totalSlotsPerColumn).fill(null);
     });
 
+    // --- Tabs Logic ---
+    tabButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const targetTab = button.dataset.tab;
+
+            tabButtons.forEach(btn => btn.classList.remove('active'));
+            button.classList.add('active');
+
+            tabContents.forEach(content => {
+                content.classList.remove('active');
+                if (content.id === targetTab) {
+                    content.classList.add('active');
+                }
+            });
+
+            if (targetTab === 'catalog') {
+                populateCardsCatalog();
+            }
+        });
+    });
+
+    // --- Catalog Logic ---
+    function populateCardsCatalog() {
+        if (!cardsCatalogGrid) return;
+        cardsCatalogGrid.innerHTML = '';
+
+        const allCatalogCards = getAllCardsForCatalog();
+
+        allCatalogCards.forEach(card => {
+            const cardDiv = document.createElement('div');
+            cardDiv.classList.add('catalog-card');
+
+            if (card.imageFile && card.imageFile.trim() !== "") {
+                const img = document.createElement('img');
+                img.src = `images/${card.imageFile}`;
+                img.alt = card.name;
+                img.onerror = function() {
+                    this.style.display = 'none';
+                    const placeholder = document.createElement('div');
+                    placeholder.classList.add('catalog-card-placeholder');
+                    placeholder.textContent = 'Image N/A';
+                    if (!cardDiv.querySelector('.catalog-card-placeholder')) { 
+                         cardDiv.insertBefore(placeholder, cardDiv.querySelector('.catalog-card-name'));
+                    }
+                };
+                cardDiv.appendChild(img);
+            } else {
+                // placeholder
+                const placeholder = document.createElement('div');
+                placeholder.classList.add('catalog-card-placeholder');
+                placeholder.textContent = 'No Image';
+                cardDiv.appendChild(placeholder);
+            }
+
+            const nameSpan = document.createElement('span');
+            nameSpan.classList.add('catalog-card-name');
+            nameSpan.textContent = card.name;
+            cardDiv.appendChild(nameSpan);
+
+            cardsCatalogGrid.appendChild(cardDiv);
+        });
+    }
+
+
+    // --- Calculator Logic ---
     function createGrid() {
+        if (!gridContainer) return;
+        gridContainer.innerHTML = '';
         columnDefinitions.forEach(colDef => {
             const columnDiv = document.createElement('div');
             columnDiv.classList.add('column');
@@ -63,7 +137,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 columnDiv.appendChild(slotDiv);
             }
 
-            // Assist slot
             for (let i = 0; i < assistSlotsPerColumn; i++) {
                 const slotIndexInArray = regularSlotsPerColumn + i;
                 const slotDiv = document.createElement('div');
@@ -92,7 +165,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function populateSelectWithOptions(selectElement, availableCards, columnId, slotIndex) {
         const previouslySelectedValue = selectElement.value;
-        selectElement.innerHTML = ''; // Clear old options
+        selectElement.innerHTML = '';
 
         const slotType = selectElement.dataset.slotType;
 
@@ -107,7 +180,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 option.value = card.name;
                 const pierceValue = (slotType === 'assist' ? (card.assistPierce || 0) : card.pierce);
                 option.textContent = `${card.name} (+${pierceValue})`;
-                // Store all relevant card data on the option for easy access
                 option.dataset.cardName = card.name;
                 option.dataset.pierce = card.pierce || 0;
                 option.dataset.assistPierce = card.assistPierce || 0;
@@ -120,7 +192,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (Array.from(selectElement.options).some(opt => opt.value === previouslySelectedValue)) {
             selectElement.value = previouslySelectedValue;
         } else {
-            selectElement.value = "Empty"; // Default to Empty if previous selection is no longer valid
+            selectElement.value = "Empty";
             if (previouslySelectedValue !== "Empty" && previouslySelectedValue !== null) {
                  selectedCardsByColumn[columnId][slotIndex] = "Empty";
             }
@@ -138,7 +210,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function updateSelectsInColumn(columnId) {
-        const columnDiv = gridContainer.querySelector(`.column[data-column-id="${columnId}"]`);
+        const columnDiv = calculatorTabContent.querySelector(`.column[data-column-id="${columnId}"]`);
         if (!columnDiv) return;
 
         const selectsInColumn = columnDiv.querySelectorAll('select');
@@ -153,16 +225,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function updateAllSelects() {
         columnDefinitions.forEach(colDef => {
-            updateSelectsInColumn(colDef.id);
+            if (calculatorTabContent.querySelector(`.column[data-column-id="${colDef.id}"]`)) {
+                 updateSelectsInColumn(colDef.id);
+            }
         });
     }
 
     function calculateTotals() {
+        if (!passivePierceValueSpan) return;
+
         let passivePierce = 0;
         const selectedWeaponCards = [];
         const selectedGloveCards = [];
 
-        const allSelects = gridContainer.querySelectorAll('select');
+        const allSelects = calculatorTabContent.querySelectorAll('select');
 
         allSelects.forEach(select => {
             const selectedOption = select.options[select.selectedIndex];
@@ -188,7 +264,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
         passivePierceValueSpan.textContent = passivePierce;
 
-        // Sort cards by activePierce descending to easily get highest values
         selectedWeaponCards.sort((a, b) => b.activePierce - a.activePierce);
         selectedGloveCards.sort((a, b) => b.activePierce - a.activePierce);
 
@@ -214,7 +289,6 @@ document.addEventListener('DOMContentLoaded', () => {
             activePierceValueSpan.textContent = activePierceTotal;
             activeCardsDisplaySpan.textContent = activeCardNames.length > 0 ? activeCardNames.map(name => `(${name})`).join(' + ') : '';
 
-            // Double Glove Active Pierce Logic
             if (selectedGloveCards.length >= 2) {
                 doubleGloveActivePierceSection.style.display = 'block';
                 doubleGloveActivePierceTotal = passivePierce;
@@ -224,11 +298,11 @@ document.addEventListener('DOMContentLoaded', () => {
                     doubleGloveActivePierceTotal += selectedWeaponCards[0].activePierce;
                     doubleGloveActiveCardNames.push(selectedWeaponCards[0].name);
                 }
-                if (selectedGloveCards.length > 0) { // First glove
+                if (selectedGloveCards.length > 0) {
                     doubleGloveActivePierceTotal += selectedGloveCards[0].activePierce;
                     doubleGloveActiveCardNames.push(selectedGloveCards[0].name);
                 }
-                 if (selectedGloveCards.length >= 2) { // Second glove
+                 if (selectedGloveCards.length >= 2) {
                     doubleGloveActivePierceTotal += selectedGloveCards[1].activePierce;
                     doubleGloveActiveCardNames.push(selectedGloveCards[1].name);
                 }
@@ -238,20 +312,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
             } else {
                 doubleGloveActivePierceSection.style.display = 'none';
-                doubleGloveActivePierceValueSpan.textContent = '0';
-                doubleGloveActiveCardsDisplaySpan.textContent = '';
             }
-
         } else {
             activePierceSection.style.display = 'none';
             doubleGloveActivePierceSection.style.display = 'none';
-            activePierceValueSpan.textContent = '0';
-            activeCardsDisplaySpan.textContent = '';
-            doubleGloveActivePierceValueSpan.textContent = '0';
-            doubleGloveActiveCardsDisplaySpan.textContent = '';
         }
     }
 
-    createGrid();
-    // calculateTotals will be called at the end of createGrid
+    if (gridContainer) {
+        createGrid();
+    }
 });

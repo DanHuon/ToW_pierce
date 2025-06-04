@@ -3,28 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pierce Calculator</title>
+    <title>Pierce Calculator & Cards</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container">
-        <h1>Pierce Calculator</h1>
-        <div class="grid-container" id="gridContainer">
+    <div class="app-container">
+        <nav class="tab-nav">
+            <button class="tab-button active" data-tab="calculator">Calculator</button>
+            <button class="tab-button" data-tab="catalog">Cards Catalog</button>
+        </nav>
+
+        <div id="calculator" class="tab-content active">
+            <div class="container">
+                <h1>Pierce Calculator</h1>
+                <div class="grid-container" id="gridContainer">
+                    </div>
+                <div class="total-pierce-container">
+                    <div class="total-pierce">
+                        <h2>Passive Pierce: <span id="passivePierceValue">0</span></h2>
+                    </div>
+                    <div class="total-pierce" id="activePierceSection" style="display: none;">
+                        <h2>Active Pierce: <span id="activePierceValue">0</span></h2>
+                        <p id="activeCardsDisplay" class="active-cards-display"></p>
+                    </div>
+                    <div class="total-pierce" id="doubleGloveActivePierceSection" style="display: none;">
+                        <h2>Double Glove Active Pierce: <span id="doubleGloveActivePierceValue">0</span></h2>
+                        <p id="doubleGloveActiveCardsDisplay" class="active-cards-display"></p>
+                    </div>
+                </div>
             </div>
-        <div class="total-pierce-container">
-            <div class="total-pierce">
-                <h2>Passive Pierce: <span id="passivePierceValue">0</span></h2>
-            </div>
-            <div class="total-pierce" id="activePierceSection" style="display: none;">
-                <h2>Active Pierce: <span id="activePierceValue">0</span></h2>
-                <p id="activeCardsDisplay" class="active-cards-display"></p>
-            </div>
-            <div class="total-pierce" id="doubleGloveActivePierceSection" style="display: none;">
-                <h2>Double Glove Active Pierce: <span id="doubleGloveActivePierceValue">0</span></h2>
-                <p id="doubleGloveActiveCardsDisplay" class="active-cards-display"></p>
+        </div>
+
+        <div id="catalog" class="tab-content">
+            <div class="container">
+                <h1>Cards Catalog</h1>
+                <div class="cards-catalog-grid" id="cardsCatalogGrid">
+                    </div>
             </div>
         </div>
     </div>
+
     <script src="cards.js"></script>
     <script src="app.js"></script>
 </body>
