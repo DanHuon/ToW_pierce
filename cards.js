@@ -12,7 +12,7 @@
 
 const allCards = [
     // --- ARMOR CARDS ---
-    { name: "Dezeria A", pierce: 211, assistPierce: 23, type: "armor", imageFile: "dezeria_a.webp" },
+    { name: "(Unofficial)Dezeria A", pierce: 211, assistPierce: 23, type: "armor", imageFile: "dezeria_a.webp" },
     { name: "Diva - Celestial", pierce: 180, assistPierce: 19, type: "armor", imageFile: "diva_celestial.webp" },
     { name: "Zashiki Warashi", pierce: 151, assistPierce: 15, type: "armor", imageFile: "zashiki_warashi.webp" },
     { name: "Tengu Raccoon", pierce: 143, assistPierce: 15, type: "armor", imageFile: "tengu_raccoon.webp" },
@@ -32,7 +32,7 @@ const allCards = [
     { name: "Chie", pierce: 108, type: "talisman", imageFile: "chie.webp" },
 
     // --- HEADWEAR CARDS ---
-    { name: "Blood Phantom Princess - Camellia", pierce: 204, assistPierce: 25, type: "headwear", imageFile: "camellia.webp" },
+    { name: "(Unofficial)Blood Phantom Princess - Camellia", pierce: 204, assistPierce: 25, type: "headwear", imageFile: "camellia.webp" },
     { name: "Onikiri", pierce: 200, assistPierce: 21, type: "headwear", imageFile: "onikiri.webp" },
     { name: "Kinnara", pierce: 180, assistPierce: 19, type: "headwear", imageFile: "kinnara.webp" },
     { name: "Kubinashi", pierce: 124, assistPierce: 15, type: "headwear", imageFile: "kubinashi.webp" },
