@@ -38,7 +38,9 @@ document.addEventListener('DOMContentLoaded', () => {
         selectedCardsByColumn[colDef.id] = Array(totalSlotsPerColumn).fill(null);
     });
 
-    // --- Tabs Logic ---
+
+    // --- Lógica das Abas ---
+    // --- Lógica das Abas ---
     tabButtons.forEach(button => {
         button.addEventListener('click', () => {
             const targetTab = button.dataset.tab;
