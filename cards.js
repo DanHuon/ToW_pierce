@@ -22,6 +22,7 @@ const allCards = [
     { name: "Blue Heron", pierce: 59, type: "armor", imageFile: "blue_heron.webp", detailsImageFile: "blue_heron_details.webp" },
     { name: "Loras", pierce: 43, type: "armor", imageFile: "loras.webp", detailsImageFile: "loras_details.webp" },
     { name: "Mina", pierce: 43, type: "armor", imageFile: "mina.webp", detailsImageFile: "mina_details.webp" },
+    { name: "(Collab)Natsu", pierce: 124, assistPierce: 15, type: "armor", imageFile: "natsu.webp", detailsImageFile: "natsu_details.webp" },
 
     // --- TALISMAN CARDS ---
     { name: "Fortune Estrid", pierce: 246, assistPierce: 25, type: "talisman", imageFile: "fortune_estrid.webp", detailsImageFile: "fortune_estrid_details.webp" },
