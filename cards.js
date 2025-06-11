@@ -13,7 +13,7 @@
 
 const allCards = [
     // --- ARMOR CARDS ---
-    { name: "(Unofficial)Dezeria A", pierce: 211, assistPierce: 23, type: "armor", imageFile: "dezeria_a.webp", detailsImageFile: "dezeria_a_details.webp" },
+    { name: "(Not Released)Autumn Moon", pierce: 211, assistPierce: 23, type: "armor", imageFile: "autumn_moon.webp", detailsImageFile: "autumn_moon_details.webp" },
     { name: "Diva - Celestial", pierce: 180, assistPierce: 19, type: "armor", imageFile: "diva_celestial.webp", detailsImageFile: "diva_celestial_details.webp" },
     { name: "Zashiki Warashi", pierce: 151, assistPierce: 15, type: "armor", imageFile: "zashiki_warashi.webp", detailsImageFile: "zashiki_warashi_details.webp" },
     { name: "Tengu Raccoon", pierce: 143, assistPierce: 15, type: "armor", imageFile: "tengu_raccoon.webp", detailsImageFile: "tengu_raccoon_details.webp" },
