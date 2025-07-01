@@ -13,7 +13,7 @@
 
 const allCards = [
     // --- ARMOR CARDS ---
-    { name: "(Not Released)Autumn Moon", pierce: 211, assistPierce: 23, type: "armor", imageFile: "autumn_moon.webp", detailsImageFile: "autumn_moon_details.webp" },
+    { name: "Autumn Moon: Ephemeral", pierce: 211, assistPierce: 23, type: "armor", imageFile: "autumn_moon.webp", detailsImageFile: "autumn_moon_details.webp" },
     { name: "Diva - Celestial", pierce: 180, assistPierce: 19, type: "armor", imageFile: "diva_celestial.webp", detailsImageFile: "diva_celestial_details.webp" },
     { name: "Zashiki Warashi", pierce: 151, assistPierce: 15, type: "armor", imageFile: "zashiki_warashi.webp", detailsImageFile: "zashiki_warashi_details.webp" },
     { name: "Tengu Raccoon", pierce: 143, assistPierce: 15, type: "armor", imageFile: "tengu_raccoon.webp", detailsImageFile: "tengu_raccoon_details.webp" },
@@ -32,9 +32,10 @@ const allCards = [
     { name: "Kitsunebi", pierce: 124, assistPierce: 15, type: "talisman", imageFile: "kitsunebi.webp", detailsImageFile: "kitsunebi_details.webp" },
     { name: "Kodama", pierce: 108, type: "talisman", imageFile: "kodama.webp", detailsImageFile: "kodama_details.webp" },
     { name: "Chie", pierce: 108, type: "talisman", imageFile: "chie.webp", detailsImageFile: "chie_details.webp" },
+    { name: "(unreleased)Flora Chirpie", pierce: 0, assistPierce: 0, type: "talisman", imageFile: "flora_chirpie.webp", detailsImageFile: "flora_chirpie_details.webp" },
 
     // --- HEADWEAR CARDS ---
-    { name: "(Unofficial)Blood Phantom Princess - Camellia", pierce: 204, assistPierce: 25, type: "headwear", imageFile: "camellia.webp", detailsImageFile: "camellia_details.webp" },
+    { name: "Blood Princess: Camellia", pierce: 246, assistPierce: 25, type: "headwear", imageFile: "blood_princess_camellia.webp", detailsImageFile: "blood_princess_camellia_details.webp" },
     { name: "Onikiri", pierce: 200, assistPierce: 21, type: "headwear", imageFile: "onikiri.webp", detailsImageFile: "onikiri_details.webp" },
     { name: "Kinnara", pierce: 180, assistPierce: 19, type: "headwear", imageFile: "kinnara.webp", detailsImageFile: "kinnara_details.webp" },
     { name: "Kubinashi", pierce: 124, assistPierce: 15, type: "headwear", imageFile: "kubinashi.webp", detailsImageFile: "kubinashi_details.webp" },

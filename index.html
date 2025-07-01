@@ -17,17 +17,17 @@
             <div class="container">
                 <h1>Pierce Calculator</h1>
                 <div class="grid-container" id="gridContainer">
-                    </div>
+                </div>
                 <div class="total-pierce-container">
                     <div class="total-pierce">
-                        <h2>Passive Pierce: <span id="passivePierceValue">0</span></h2>
+                        <h2>Passive Pierce: <span id="passivePierceValue">0</span><span class="glory-level" id="passiveGloryLevel"></span></h2>
                     </div>
                     <div class="total-pierce" id="activePierceSection" style="display: none;">
-                        <h2>Active Pierce: <span id="activePierceValue">0</span></h2>
+                        <h2>Active Pierce: <span id="activePierceValue">0</span><span class="glory-level" id="activeGloryLevel"></span></h2>
                         <p id="activeCardsDisplay" class="active-cards-display"></p>
                     </div>
                     <div class="total-pierce" id="doubleGloveActivePierceSection" style="display: none;">
-                        <h2>Double Glove Active Pierce: <span id="doubleGloveActivePierceValue">0</span></h2>
+                        <h2>Double Glove Active Pierce: <span id="doubleGloveActivePierceValue">0</span><span class="glory-level" id="doubleGloveGloryLevel"></span></h2>
                         <p id="doubleGloveActiveCardsDisplay" class="active-cards-display"></p>
                     </div>
                 </div>
@@ -38,7 +38,7 @@
             <div class="container">
                 <h1>Cards Catalog</h1>
                 <div class="cards-catalog-grid" id="cardsCatalogGrid">
-                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -46,11 +46,14 @@
     <div id="cardDetailModal" class="modal" style="display: none;">
         <div class="modal-content">
             <span class="modal-close-button">&times;</span>
-            <div id="modalImageContainer">  <img id="modalCardDetailImage" src="" alt="Card Details" style="display: none;"> <div id="modalDetailImagePlaceholder" class="catalog-card-placeholder" style="display: none;">Image N/A</div> </div>
+            <div id="modalImageContainer">
+                <img id="modalCardDetailImage" src="" alt="Card Details" style="display: none;">
+                <div id="modalDetailImagePlaceholder" class="catalog-card-placeholder" style="display: none;">Image N/A</div>
+            </div>
             <div id="modalCardStats">
                 <h3 id="modalCardName"></h3>
                 <p>Pierce: <span id="modalCardPierceValue">0</span></p>
-                </div>
+            </div>
         </div>
     </div>
 
