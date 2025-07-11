@@ -30,14 +30,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Glory Requirements Data
     const gloryRequirements = [
-        [30, 80, 150, 250, 350],         // Floor 1
-        [150, 280, 420, 580, 740],      // Floor 2
-        [320, 570, 820, 1040, 1230],     // Floor 3
-        [580, 810, 1375, 1840, 2140],    // Floor 4
-        [1140, 1590, 2040, 2490, 2940],  // Floor 5
-        [1500, 2050, 2750, 3500, 3950],  // Floor 6
-        [1700, 3050, 4300, 4800, 5050],  // Floor 7
-        [2200, 4150, 5250, 5950, 6200]   // Floor 8
+        [30, 80, 150, 250, 350],
+        [150, 280, 420, 580, 740],
+        [320, 570, 820, 1040, 1230],
+        [580, 810, 1375, 1840, 2140],
+        [1140, 1590, 2040, 2490, 2940],
+        [1500, 2050, 2750, 3500, 3950],
+        [1700, 3050, 4300, 4800, 5050],
+        [2200, 4150, 5250, 5950, 6200]
     ];
 
     // Calculator Definitions
@@ -53,7 +53,7 @@ document.addEventListener('DOMContentLoaded', () => {
     ];
 
     const regularSlotsPerColumn = 4;
-    const assistSlotsPerColumn = 1;
+    const assistSlotsPerColumn = 2; // MODIFICATION: Changed from 1 to 2
     const totalSlotsPerColumn = regularSlotsPerColumn + assistSlotsPerColumn;
     const selectedCardsByColumn = {};
 
@@ -166,6 +166,7 @@ document.addEventListener('DOMContentLoaded', () => {
             columnTitle.textContent = colDef.name;
             columnDiv.appendChild(columnTitle);
             const cardsForColumn = getCardsByType(colDef.type);
+
             for (let i = 0; i < regularSlotsPerColumn; i++) {
                 const slotDiv = document.createElement('div');
                 slotDiv.classList.add('slot');
@@ -182,21 +183,26 @@ document.addEventListener('DOMContentLoaded', () => {
                 slotDiv.appendChild(select);
                 columnDiv.appendChild(slotDiv);
             }
-            const assistSlotIndexInArray = regularSlotsPerColumn;
-            const assistSlotDiv = document.createElement('div');
-            assistSlotDiv.classList.add('assist-slot');
-            const assistSlotLabel = document.createElement('span');
-            assistSlotLabel.classList.add('slot-label');
-            assistSlotLabel.textContent = `Assist 1`;
-            assistSlotDiv.appendChild(assistSlotLabel);
-            const assistSelect = document.createElement('select');
-            assistSelect.dataset.slotIndex = assistSlotIndexInArray;
-            assistSelect.dataset.slotType = 'assist';
-            assistSelect.dataset.columnType = colDef.type;
-            populateSelectWithOptions(assistSelect, cardsForColumn, colDef.id, assistSlotIndexInArray);
-            assistSelect.addEventListener('change', (event) => handleSelectionChange(event, colDef.id, assistSlotIndexInArray));
-            assistSlotDiv.appendChild(assistSelect);
-            columnDiv.appendChild(assistSlotDiv);
+
+            // MODIFICATION: Changed to a loop to create multiple assist slots
+            for (let i = 0; i < assistSlotsPerColumn; i++) {
+                const slotIndexInArray = regularSlotsPerColumn + i;
+                const assistSlotDiv = document.createElement('div');
+                assistSlotDiv.classList.add('assist-slot');
+                const assistSlotLabel = document.createElement('span');
+                assistSlotLabel.classList.add('slot-label');
+                assistSlotLabel.textContent = `Assist ${i + 1}`;
+                assistSlotDiv.appendChild(assistSlotLabel);
+                const assistSelect = document.createElement('select');
+                assistSelect.dataset.slotIndex = slotIndexInArray;
+                assistSelect.dataset.slotType = 'assist';
+                assistSelect.dataset.columnType = colDef.type;
+                populateSelectWithOptions(assistSelect, cardsForColumn, colDef.id, slotIndexInArray);
+                assistSelect.addEventListener('change', (event) => handleSelectionChange(event, colDef.id, slotIndexInArray));
+                assistSlotDiv.appendChild(assistSelect);
+                columnDiv.appendChild(assistSlotDiv);
+            }
+            
             gridContainer.appendChild(columnDiv);
         });
         updateAllSelects();
