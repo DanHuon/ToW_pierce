@@ -32,7 +32,7 @@ const allCards = [
     { name: "Kitsunebi", pierce: 124, assistPierce: 15, type: "talisman", imageFile: "kitsunebi.webp", detailsImageFile: "kitsunebi_details.webp" },
     { name: "Kodama", pierce: 108, type: "talisman", imageFile: "kodama.webp", detailsImageFile: "kodama_details.webp" },
     { name: "Chie", pierce: 108, type: "talisman", imageFile: "chie.webp", detailsImageFile: "chie_details.webp" },
-    { name: "(unreleased)Flora Chirpie", pierce: 0, assistPierce: 0, type: "talisman", imageFile: "flora_chirpie.webp", detailsImageFile: "flora_chirpie_details.webp" },
+    { name: "(unreleased)Flora Chirpie", pierce: 291, assistPierce: 29, type: "talisman", imageFile: "flora_chirpie.webp", detailsImageFile: "flora_chirpie_details.webp" },
 
     // --- HEADWEAR CARDS ---
     { name: "Blood Princess: Camellia", pierce: 246, assistPierce: 25, type: "headwear", imageFile: "blood_princess_camellia.webp", detailsImageFile: "blood_princess_camellia_details.webp" },
