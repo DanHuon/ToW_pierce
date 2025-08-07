@@ -49,6 +49,7 @@ const allCards = [
     // --- WEAPON CARDS ---
     { name: "Blood Sakura", pierce: 200, assistPierce: 21, activePierce: 200, type: "weapon", imageFile: "blood_sakura.webp", detailsImageFile: "blood_sakura_details.webp" },
     { name: "Enenra", pierce: 150, assistPierce: 12, activePierce: 175, type: "weapon", imageFile: "enenra.webp", detailsImageFile: "enenra_details.webp" },
+    { name: "(unreleased)Suzuna", pierce: 279, assistPierce: 26, activePierce: 230, type: "weapon", imageFile: "suzuna.webp", detailsImageFile: "suzuna_details.webp" },
 ];
 
 const emptyCard = { name: "Empty", pierce: 0, assistPierce: 0, activePierce: 0, type: "any", imageFile: null, detailsImageFile: null };
